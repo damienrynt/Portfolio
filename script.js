@@ -1,18 +1,12 @@
-// Gear rotation on scroll
-const gears = document.querySelectorAll('.gear');
+const gear1 = document.querySelector(".rotating-gear");
+const gear2 = document.querySelector(".rotating-gear2");
+
 window.addEventListener("scroll", () => {
-  const gear = document.querySelector(".rotating-gear");
-  const rotation = window.scrollY * 0.5; // speed factor
-  gear.style.transform = `rotate(${rotation}deg)`;
+  const rotation = window.scrollY * 0.5;
+  gear1.style.transform = `rotate(${rotation}deg)`;
+  gear2.style.transform = `rotate(${-rotation}deg)`;
 });
 
-const gears = document.querySelectorAll('.gear2');
-window.addEventListener("scroll", () => {
-  const gear = document.querySelector(".rotating-gear2");
-  const rotation = window.scrollY * 0.5; // speed factor
-  gear.style.transform = `rotate(${rotation}deg)`;
-});
-// Smooth scrolling
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     e.preventDefault();
