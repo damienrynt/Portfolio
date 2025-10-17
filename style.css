@@ -21,7 +21,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .rotating-gear {
-  left: 80px;
+  left: 50px;
   top: 30%;
   width: 90px;
   opacity: 0.35;
@@ -31,8 +31,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .rotating-gear2 {
-  left: 110px;
-  top: 50%;
+  left: 80px;
+  top: 40%;
   width: 90px;
   opacity: 0.35;
   position: fixed;
