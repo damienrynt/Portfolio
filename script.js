@@ -1,9 +1,6 @@
 const gear1 = document.querySelector(".rotating-gear");
 const gear2 = document.querySelector(".rotating-gear2");
 
-const baseRotationGear1 = 0;
-const baseRotationGear2 = 35;  
-
 window.addEventListener("scroll", () => {
   const rotation = window.scrollY * 0.5;
   gear1.style.transform = `rotate(${rotation}deg)`;
