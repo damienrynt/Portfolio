@@ -30,16 +30,6 @@ h1, h2, h3, h4, h5, h6 {
   transform-origin: center;
   transition: transform 0.1s linear;
 }
-
-.rotating-gear2 {
-  left: 90px;
-  top: 50%;
-  width: 90px;
-  opacity: 0.35;
-  position: fixed;
-  transform-origin: center;
-  transition: transform 0.1s linear;
-}
 /* HEADER */
 header {
   display: flex;
