@@ -22,7 +22,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Gears */
 .rotating-gear {
-  left: 80px;
+  right: 300px;
   top: 30%;
   width: 90px;
   opacity: 0.35;
