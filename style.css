@@ -31,13 +31,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .rotating-gear2 {
-  left: 80px;
+  left: 85px;
   top: 40%;
   width: 90px;
   opacity: 0.35;
   position: fixed;
   transform-origin: center;
   transition: transform 0.1s linear;
+  transform: rotate(20deg);
 }
 
 header {
