@@ -244,25 +244,3 @@ footer {
   border-top: 1px solid #222;
   margin-top: 3rem;
 }
-
-@media (max-width: 768px) {
-  .gears, .portfolio-title {
-    display: none;
-  }
-
-  nav {
-    display: flex;
-    justify-content: left;
-    align-items: left;
-    flex-wrap: wrap;
-    text-align: left;
-    gap: 15px; 
-    background: transparent;
-  }
-
-  nav a,
-  #lang-toggle {
-    font-size: 18px;
-    display: inline-block;
-  }
-}
