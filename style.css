@@ -26,7 +26,6 @@ h1, h2, h3, h4, h5, h6 {
 .rotating-gear {
   width: 35px;
   opacity: 0.5;
-  position: fixed;
   transform-origin: center;
   transition: transform 0.1s linear;
 }
