@@ -9,7 +9,10 @@
 
 body {
   font-family: "Rubik", sans-serif;
-  background-color: #000;
+  background: linear-gradient(135deg, #0d1b2a, #1b263b, #5c2e91); /* modern dark blue → purple */
+  background-attachment: fixed; /* keeps gradient still while scrolling */
+  background-repeat: no-repeat;
+  background-size: cover;
   color: #e0e0e0;
   line-height: 1.6;
   overflow-x: hidden;
