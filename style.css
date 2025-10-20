@@ -83,6 +83,20 @@ nav a:hover {
   color: #aaa;
 }
 
+#lang-toggle {
+  background: none;      
+  border: none;           
+  color: #e0e0e0;        
+  font-weight: 500;      
+  cursor: pointer;          
+  font-size: 16px;        
+  transition: color 0.3s;   
+  padding: 0;               
+}
+
+#lang-toggle:hover {
+  color: #aaa;             
+}
 
 #hero {
   text-align: center;
