@@ -87,7 +87,8 @@ nav a:hover {
   background: none;      
   border: none;           
   color: #e0e0e0;        
-  font-weight: 500;      
+  font-weight: 500; 
+  font-family: 'Rubik', sans-serif;
   cursor: pointer;          
   font-size: 16px;        
   transition: color 0.3s;   
