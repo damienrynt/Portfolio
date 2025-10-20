@@ -57,7 +57,8 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #111;
+  header, nav {
+  background: transparent;   
   padding: 1rem 2rem;
   position: sticky;
   top: 0;
@@ -239,7 +240,7 @@ nav a:hover {
 footer {
   text-align: center;
   padding: 1.5rem 0;
-  color: #666;
+  color: #e0e0e0;
   font-size: 0.9rem;
   border-top: 1px solid #222;
   margin-top: 3rem;
