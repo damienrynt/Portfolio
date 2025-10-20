@@ -1,12 +1,8 @@
 const gear1 = document.querySelector(".rotating-gear");
-const gear2 = document.querySelector(".rotating-gear2");
-const gear3 = document.querySelector(".rotating-gear3");
 
 window.addEventListener("scroll", () => {
   const rotation = window.scrollY * 0.4;
   gear1.style.transform = `rotate(${rotation}deg)`;
-  gear2.style.transform = `rotate(${20-rotation}deg)`;
-  gear3.style.transform = `rotate(${rotation}deg)`;
 });
 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
