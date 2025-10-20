@@ -24,29 +24,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .rotating-gear {
-  left: 50px;
-  top: 30%;
-  width: 90px;
-  opacity: 0.35;
-  position: fixed;
-  transform-origin: center;
-  transition: transform 0.1s linear;
-}
-
-.rotating-gear2 {
-  left: 85px;
-  top: 40%;
-  width: 90px;
-  opacity: 0.35;
-  position: fixed;
-  transform-origin: center;
-  transition: transform 0.1s linear;
-}
-
-.rotating-gear3 {
-  left: 87px;
-  top: 51%;
-  width: 90px;
+  /*/left: 50px;/*/
+  /*/top: 30%;/*/
+  width: 20px;
   opacity: 0.35;
   position: fixed;
   transform-origin: center;
