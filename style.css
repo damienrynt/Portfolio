@@ -58,7 +58,7 @@ header {
   justify-content: space-between;
   align-items: center;
   header, nav {
-  background: transparent;   
+  background-color: #000;   
   padding: 1rem 2rem;
   position: sticky;
   top: 0;
