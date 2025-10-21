@@ -18,7 +18,7 @@
 </head>
 <body>
 
-  <header>
+<header>
     <div class="logo">
         <img src="Images/settings.png" class="gear rotating-gear" alt="Rotating Gear">
     </div>
@@ -33,38 +33,32 @@
   </header>
 
   <section id="hero">
-  <div class="hero-content">
-    <img src="Images/yo.jpg" alt="Profile Picture" class="profile-pic">
-    <div class="hero-text">
-      <h1>Damien Reynot</h1>
-      <p>Mechanical Engineering Student @ UWaterloo</p>
+    <div class="hero-content" data-aos="fade-up" data-aos-duration="1200">
+      <img src="Images/yo.jpg" alt="Profile Picture" class="profile-pic">
+      <div class="hero-text">
+        <h1>Damien Reynot</h1>
+        <p>Mechanical Engineering Student @ UWaterloo</p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-
-  <section id="about" class="content-section">
+  <section id="about" class="content-section" data-aos="fade-up" data-aos-duration="1000">
     <h2>About Me</h2>
     <p>
       Ambitious Mechanical Engineering student at UWaterloo. Passionate about developing innovative mechanical systems and optimizing manufacturing processes. My experience includes CAD modeling, 3D printing, and machining.
     </p>
     <p>
-      I'm currently seeking a Winter 2026 internship opportunity. Feel free to contact me at dreynot@uwaterloo.ca
+      I'm currently seeking a Winter 2026 internship opportunity. Feel free to contact me at <a href="mailto:dreynot@uwaterloo.ca">dreynot@uwaterloo.ca</a>.
     </p>
   </section>
 
-  <section id="projects" class="content-section">
+  <section id="projects" class="content-section" data-aos="fade-up" data-aos-duration="1000">
     <h2>Projects</h2>
 
-    <div class="project-card">
+    <div class="project-card" data-aos="fade-up" data-aos-delay="100">
       <h3>Sauce Dispenser <span class="date">May 2025</span></h3>
-      
-      <p>
-        The objective of this project was to design, 3D print and assemble a machine that carries filled sauce cups onto a heating plate.
-      </p>
-      <p>
-        My role was to lead the full process of making the robotic arm that pushed the cups onto the plate. The tasks I completed include:
-      </p>
+      <p>The objective of this project was to design, 3D print and assemble a machine that carries filled sauce cups onto a heating plate.</p>
+      <p>My role was to lead the full process of making the robotic arm that pushed the cups onto the plate. The tasks I completed include:</p>
       <ul>
         <li>Designed 3D models of the mechanical arm and custom gear to convert rotational to translational movement.</li>
         <li>Set up and ran 3D prints.</li>
@@ -81,15 +75,10 @@
       </div>
     </div>
 
-    <div class="project-card">
+    <div class="project-card" data-aos="fade-up" data-aos-delay="200">
       <h3>Gateway to Mars – Humanity’s Magnum Opus <span class="date">Nov 2023</span></h3>
-    
-      <p>          
-        This project simulated the Hohmann Transfer for the 2023 McGill Physics Hackathon, visualizing the specific window where a spacecraft could transfer from Earth’s orbit to Mars’s orbit.
-      </p>
-      <p>
-        I worked on the user interface and time acceleration slider, using JavaScript and the p5.js library to create the planetary visuals. My tasks included:
-      </p>
+      <p>This project simulated the Hohmann Transfer for the 2023 McGill Physics Hackathon, visualizing the specific window where a spacecraft could transfer from Earth’s orbit to Mars’s orbit.</p>
+      <p>I worked on the user interface and time acceleration slider, using JavaScript and the p5.js library to create the planetary visuals. My tasks included:</p>
       <ul>
         <li>Implemented planet and star visuals with p5.js.</li>
         <li>Linked a slider to control time acceleration.</li>
@@ -101,12 +90,12 @@
       </p>
       <div class="links">
         <a href="https://youtu.be/J0Q34lAa_xw" target="_blank">▶ Watch the Simulation</a>
-        <a href="https://devpost.com/software/project-title-to-be-changed?_gl=1*199d5v6*_gcl_au*MTQ0OTMxMzYwMC4xNzU2OTg0NzE0*_ga*MTY4MDU2MjA1LjE3NTY5ODQ3MTQ.*_ga_0YHJK3Y10M*czE3NTg1MDc5NzYkbzExJGcxJHQxNzU4NTA3OTgxJGo1NSRsMCRoMA.." target="_blank">🌐 View More</a>
+        <a href="https://devpost.com/software/project-title-to-be-changed" target="_blank">🌐 View More</a>
       </div>
     </div>
   </section>
 
-  <section id="contact" class="content-section">
+  <section id="contact" class="content-section" data-aos="fade-up" data-aos-duration="1000">
     <h2>Contact</h2>
     <div class="contact-info">
       <p>Email: <a href="mailto:dreynot@uwaterloo.ca">dreynot@uwaterloo.ca</a></p>
@@ -117,6 +106,14 @@
   <footer>
     <p>Damien Reynot</p>
   </footer>
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
 
   <script src="script.js"></script>
 </body>
