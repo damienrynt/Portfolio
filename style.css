@@ -24,7 +24,14 @@ body {
   min-height: 100vh;
 }
 
-/* Jet Stream Trails */
+/* Sky Background */
+body {
+  margin: 0;
+  background: radial-gradient(circle at 30% 50%, #00173d, #000814);
+  overflow: hidden;
+}
+
+/* Container for all trails */
 .jet-trail {
   position: fixed;
   top: 0;
@@ -36,11 +43,12 @@ body {
   overflow: hidden;
 }
 
+/* Each trail line */
 .trail {
   position: absolute;
-  background: linear-gradient(90deg, 
-    rgba(255, 255, 255, 0) 0%, 
-    rgba(255, 255, 255, 0.8) 50%, 
+  background: linear-gradient(90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.8) 50%,
     rgba(255, 255, 255, 0) 100%);
   height: 1px;
   width: 150px;
@@ -48,158 +56,22 @@ body {
   filter: blur(0.5px);
 }
 
-/* Random animations with proper direction alignment */
-.trail:nth-child(1) {
-  top: 20%;
-  transform: rotate(15deg);
-  animation: flyAcross1 15s linear infinite 0s;
-}
-
-.trail:nth-child(2) {
-  top: 40%;
-  transform: rotate(-10deg);
-  width: 200px;
-  animation: flyAcross2 18s linear infinite 3s;
-}
-
-.trail:nth-child(3) {
-  top: 60%;
-  transform: rotate(5deg);
-  width: 180px;
-  animation: flyAcross3 20s linear infinite 7s;
-}
-
-.trail:nth-child(4) {
-  top: 30%;
-  transform: rotate(-15deg);
-  width: 170px;
-  animation: flyAcross4 16s linear infinite 11s;
-}
-
-.trail:nth-child(5) {
-  top: 70%;
-  transform: rotate(8deg);
-  width: 190px;
-  animation: flyAcross5 22s linear infinite 5s;
-}
-
-.trail:nth-child(6) {
-  top: 50%;
-  transform: rotate(-5deg);
-  width: 160px;
-  animation: flyAcross6 14s linear infinite 9s;
-}
-
-/* Individual animations for random start/end points */
-@keyframes flyAcross1 {
+/* Animation that moves a trail across its own direction */
+@keyframes fly {
   0% {
-    left: -200px;
+    transform: translate(0, 0);
     opacity: 0;
-    transform: rotate(15deg);
   }
-  10% { opacity: 0.6; }
-  15% { opacity: 0.8; }
+  10% { opacity: 0.8; }
   50% { opacity: 0.7; }
-  85% { opacity: 0.5; }
-  90% { opacity: 0.3; }
+  90% { opacity: 0.4; }
   100% {
-    left: calc(100% + 200px);
+    transform: translate(var(--dx), var(--dy));
     opacity: 0;
-    transform: rotate(15deg);
   }
 }
 
-@keyframes flyAcross2 {
-  0% {
-    right: -200px;
-    opacity: 0;
-    transform: rotate(-10deg);
-  }
-  10% { opacity: 0.6; }
-  15% { opacity: 0.8; }
-  50% { opacity: 0.7; }
-  85% { opacity: 0.5; }
-  90% { opacity: 0.3; }
-  100% {
-    right: calc(100% + 200px);
-    opacity: 0;
-    transform: rotate(-10deg);
-  }
-}
-
-@keyframes flyAcross3 {
-  0% {
-    left: -200px;
-    opacity: 0;
-    transform: rotate(5deg);
-  }
-  10% { opacity: 0.6; }
-  15% { opacity: 0.8; }
-  50% { opacity: 0.7; }
-  85% { opacity: 0.5; }
-  90% { opacity: 0.3; }
-  100% {
-    left: calc(100% + 200px);
-    opacity: 0;
-    transform: rotate(5deg);
-  }
-}
-
-@keyframes flyAcross4 {
-  0% {
-    right: -200px;
-    opacity: 0;
-    transform: rotate(-15deg);
-  }
-  10% { opacity: 0.6; }
-  15% { opacity: 0.8; }
-  50% { opacity: 0.7; }
-  85% { opacity: 0.5; }
-  90% { opacity: 0.3; }
-  100% {
-    right: calc(100% + 200px);
-    opacity: 0;
-    transform: rotate(-15deg);
-  }
-}
-
-@keyframes flyAcross5 {
-  0% {
-    left: -200px;
-    opacity: 0;
-    transform: rotate(8deg);
-  }
-  10% { opacity: 0.6; }
-  15% { opacity: 0.8; }
-  50% { opacity: 0.7; }
-  85% { opacity: 0.5; }
-  90% { opacity: 0.3; }
-  100% {
-    left: calc(100% + 200px);
-    opacity: 0;
-    transform: rotate(8deg);
-  }
-}
-
-@keyframes flyAcross6 {
-  0% {
-    right: -200px;
-    opacity: 0;
-    transform: rotate(-5deg);
-  }
-  10% { opacity: 0.6; }
-  15% { opacity: 0.8; }
-  50% { opacity: 0.7; }
-  85% { opacity: 0.5; }
-  90% { opacity: 0.3; }
-  100% {
-    right: calc(100% + 200px);
-    opacity: 0;
-    transform: rotate(-5deg);
-  }
-}
-
-/* Make sure content stays above trails */
+/* Keep content above trails */
 .content-section, header, #hero, footer {
   position: relative;
   z-index: 2;
