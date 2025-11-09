@@ -24,14 +24,7 @@ body {
   min-height: 100vh;
 }
 
-/* Sky Background */
-body {
-  margin: 0;
-  background: radial-gradient(circle at 30% 50%, #00173d, #000814);
-  overflow: hidden;
-}
-
-/* Container for all trails */
+/* Jet Stream Trails - Improved */
 .jet-trail {
   position: fixed;
   top: 0;
@@ -43,12 +36,11 @@ body {
   overflow: hidden;
 }
 
-/* Each trail line */
 .trail {
   position: absolute;
-  background: linear-gradient(90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.8) 50%,
+  background: linear-gradient(90deg, 
+    rgba(255, 255, 255, 0) 0%, 
+    rgba(255, 255, 255, 0.8) 50%, 
     rgba(255, 255, 255, 0) 100%);
   height: 1px;
   width: 150px;
@@ -56,27 +48,101 @@ body {
   filter: blur(0.5px);
 }
 
-/* Animation that moves a trail across its own direction */
-@keyframes fly {
+/* Individual trail properties with random start positions */
+.trail:nth-child(1) {
+  --angle: 15deg;
+  --startX: -20%;
+  --startY: 20%;
+  animation: flyDiagonal 18s linear infinite 0s;
+}
+
+.trail:nth-child(2) {
+  --angle: -10deg;
+  --startX: 120%;
+  --startY: 40%;
+  animation: flyDiagonal 22s linear infinite 4s;
+}
+
+.trail:nth-child(3) {
+  --angle: 45deg;
+  --startX: 50%;
+  --startY: -10%;
+  animation: flyDiagonal 16s linear infinite 2s;
+}
+
+.trail:nth-child(4) {
+  --angle: -30deg;
+  --startX: 80%;
+  --startY: 110%;
+  animation: flyDiagonal 20s linear infinite 6s;
+}
+
+.trail:nth-child(5) {
+  --angle: 60deg;
+  --startX: -15%;
+  --startY: 70%;
+  animation: flyDiagonal 25s linear infinite 1s;
+}
+
+.trail:nth-child(6) {
+  --angle: -75deg;
+  --startX: 110%;
+  --startY: 85%;
+  animation: flyDiagonal 14s linear infinite 5s;
+}
+
+.trail:nth-child(7) {
+  --angle: 85deg;
+  --startX: 90%;
+  --startY: -15%;
+  animation: flyDiagonal 19s linear infinite 3s;
+}
+
+.trail:nth-child(8) {
+  --angle: -50deg;
+  --startX: -10%;
+  --startY: 110%;
+  animation: flyDiagonal 21s linear infinite 7s;
+}
+
+/* Single animation that uses CSS variables */
+@keyframes flyDiagonal {
   0% {
-    transform: translate(0, 0);
+    transform: 
+      translate(calc(var(--startX) - 50%), calc(var(--startY) - 50%)) 
+      rotate(var(--angle)) 
+      translateX(-100px);
     opacity: 0;
   }
-  10% { opacity: 0.8; }
-  50% { opacity: 0.7; }
-  90% { opacity: 0.4; }
+  10% {
+    opacity: 0.6;
+  }
+  15% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  85% {
+    opacity: 0.4;
+  }
+  90% {
+    opacity: 0.2;
+  }
   100% {
-    transform: translate(var(--dx), var(--dy));
+    transform: 
+      translate(calc(var(--startX) - 50%), calc(var(--startY) - 50%)) 
+      rotate(var(--angle)) 
+      translateX(calc(100vw + 200px));
     opacity: 0;
   }
 }
 
-/* Keep content above trails */
+/* Make sure content stays above trails */
 .content-section, header, #hero, footer {
   position: relative;
   z-index: 2;
 }
-
 /* ===== TEXT & STRUCTURE ===== */
 h1, h2, h3, h4, h5, h6 {
   font-family: "Michroma", sans-serif;
