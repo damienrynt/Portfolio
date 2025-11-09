@@ -50,90 +50,62 @@ body {
 
 /* Random start positions and angles */
 .trail:nth-child(1) {
-  top: 20%;
-  left: -200px;
-  transform: rotate(25deg);
-  animation: flyRight 18s linear infinite 0s;
+  --angle: 15deg;
+  --startX: -20%;
+  --startY: 20%;
+  animation: flyDiagonal 18s linear infinite 0s;
 }
 
 .trail:nth-child(2) {
-  top: 60%;
-  right: -200px;
-  transform: rotate(155deg);
-  animation: flyLeft 22s linear infinite 4s;
+  --angle: -165deg;
+  --startX: 120%;
+  --startY: 40%;
+  animation: flyDiagonal 22s linear infinite 4s;
 }
 
 .trail:nth-child(3) {
-  top: -100px;
-  left: 30%;
-  transform: rotate(115deg);
-  animation: flyDown 20s linear infinite 2s;
+  --angle: 45deg;
+  --startX: 50%;
+  --startY: -10%;
+  animation: flyDiagonal 16s linear infinite 2s;
 }
 
 .trail:nth-child(4) {
-  bottom: -100px;
-  left: 70%;
-  transform: rotate(-65deg);
-  animation: flyUp 16s linear infinite 6s;
+  --angle: -30deg;
+  --startX: 80%;
+  --startY: 110%;
+  animation: flyDiagonal 20s linear infinite 6s;
 }
 
-/* Single animation that moves along X axis (trail is rotated to match direction) */
-@keyframes flyRight {
+/* Single animation that uses CSS variables */
+@keyframes flyDiagonal {
   0% {
-    left: -200px;
+    transform: 
+      translate(calc(var(--startX) - 50%), calc(var(--startY) - 50%)) 
+      rotate(var(--angle)) 
+      translateX(-100px);
     opacity: 0;
   }
-  10% { opacity: 0.6; }
-  15% { opacity: 0.8; }
-  50% { opacity: 0.7; }
-  90% { opacity: 0.2; }
+  10% {
+    opacity: 0.6;
+  }
+  15% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  85% {
+    opacity: 0.4;
+  }
+  90% {
+    opacity: 0.2;
+  }
   100% {
-    left: calc(100% + 200px);
-    opacity: 0;
-  }
-}
-
-@keyframes flyLeft {
-  0% {
-    right: -200px;
-    opacity: 0;
-  }
-  10% { opacity: 0.6; }
-  15% { opacity: 0.8; }
-  50% { opacity: 0.7; }
-  90% { opacity: 0.2; }
-  100% {
-    right: calc(100% + 200px);
-    opacity: 0;
-  }
-}
-
-@keyframes flyDown {
-  0% {
-    top: -100px;
-    opacity: 0;
-  }
-  10% { opacity: 0.6; }
-  15% { opacity: 0.8; }
-  50% { opacity: 0.7; }
-  90% { opacity: 0.2; }
-  100% {
-    top: calc(100% + 100px);
-    opacity: 0;
-  }
-}
-
-@keyframes flyUp {
-  0% {
-    bottom: -100px;
-    opacity: 0;
-  }
-  10% { opacity: 0.6; }
-  15% { opacity: 0.8; }
-  50% { opacity: 0.7; }
-  90% { opacity: 0.2; }
-  100% {
-    bottom: calc(100% + 100px);
+    transform: 
+      translate(calc(var(--startX) - 50%), calc(var(--startY) - 50%)) 
+      rotate(var(--angle)) 
+      translateX(calc(100vw + 200px));
     opacity: 0;
   }
 }
