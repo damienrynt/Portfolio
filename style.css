@@ -70,7 +70,7 @@ body {
   --angle: -20deg;
   top: 50%;
   left: 0%;
-  animation: flyDiagonal 20s linear infinite 2s;
+  animation: flyDiagonal 24s linear infinite 4s;
 }
 
 /* === Trail 4: Near top, a bit to the right, goes diagonally down-left === */
@@ -78,7 +78,7 @@ body {
   --angle: 150deg;
   top: 10%;
   left: 70%;
-  animation: flyDiagonal 24s linear infinite 6s;
+  animation: flyDiagonal 28s linear infinite 6s;
 }
 
 /* === Animation === */
