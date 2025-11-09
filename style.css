@@ -24,62 +24,64 @@ body {
   min-height: 100vh;
 }
 
+body {
+  font-family: "Rubik", sans-serif;
+  background: linear-gradient(to right, #0d1b2a, #1b2f4a, #223b61);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #e0e0e0;
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
 /* === Jet Stream Layers === */
 body::before,
 body::after {
   content: "";
   position: fixed;
   top: 0;
-  left: 0;
+  left: -50%;
   width: 200%;
   height: 200%;
   pointer-events: none;
   z-index: 0;
-  mix-blend-mode: screen; /* makes light blend naturally */
 }
 
-/* Main bright contrails */
+/* Main visible jet trails */
 body::before {
   background-image:
-    repeating-linear-gradient(
-      120deg,
-      rgba(255, 255, 255, 0.75) 0px,
-      rgba(255, 255, 255, 0.75) 3px,
-      rgba(255, 255, 255, 0.75) 60px,
-      transparent 100px
-    );
-  background-size: 700px 350px;
-  animation: jetTrails 15s linear infinite;
-  filter: blur(1.5px);
-  opacity: 0.45;
+    linear-gradient(120deg, rgba(255,255,255,0.35) 2px, transparent 2px),
+    linear-gradient(125deg, rgba(173,216,255,0.25) 2px, transparent 2px),
+    linear-gradient(130deg, rgba(255,255,255,0.2) 1px, transparent 1px);
+  background-size: 600px 300px;
+  animation: jetTrails 30s linear infinite;
+  opacity: 0.5;
+  filter: blur(0.3px);
 }
 
-/* Softer background layer */
+/* Fainter, slower background trails */
 body::after {
   background-image:
-    repeating-linear-gradient(
-      125deg,
-      rgba(173, 216, 255, 0.25) 0px,
-      rgba(173, 216, 255, 0.25) 2px,
-      rgba(173, 216, 255, 0.05) 80px,
-      transparent 120px
-    );
-  background-size: 1000px 500px;
-  animation: jetTrailsReverse 35s linear infinite;
-  filter: blur(2px);
-  opacity: 0.3;
+    linear-gradient(115deg, rgba(255,255,255,0.15) 2px, transparent 2px),
+    linear-gradient(140deg, rgba(200,200,255,0.12) 1px, transparent 1px);
+  background-size: 800px 400px;
+  animation: jetTrailsReverse 60s linear infinite;
+  opacity: 0.25;
+  filter: blur(0.8px);
 }
 
-/* Smooth diagonal motion */
+/* Animations */
 @keyframes jetTrails {
   from { background-position: 0 0; }
-  to { background-position: 700px 350px; }
+  to { background-position: 600px 300px; }
 }
 @keyframes jetTrailsReverse {
   from { background-position: 0 0; }
-  to { background-position: -1000px -500px; }
+  to { background-position: -800px -400px; }
 }
-
 
 /* ===== TEXT & STRUCTURE ===== */
 h1, h2, h3, h4, h5, h6 {
