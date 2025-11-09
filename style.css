@@ -24,7 +24,7 @@ body {
   min-height: 100vh;
 }
 
-/* Jet Stream Trails - Simplified */
+/* Jet Stream Trails - Proper Diagonal Movement */
 .jet-trail {
   position: fixed;
   top: 0;
@@ -48,124 +48,156 @@ body {
   filter: blur(0.5px);
 }
 
-/* Different animation directions */
+/* Diagonal animations using transform */
 .trail:nth-child(1) {
-  top: 20%;
-  left: -200px;
-  transform: rotate(15deg);
-  animation: flyRight 15s linear infinite 0s;
+  animation: flyDiagonal1 18s linear infinite 0s;
 }
 
 .trail:nth-child(2) {
-  top: 40%;
-  right: -200px;
-  transform: rotate(-10deg);
-  animation: flyLeft 18s linear infinite 3s;
+  animation: flyDiagonal2 22s linear infinite 4s;
 }
 
 .trail:nth-child(3) {
-  top: -50px;
-  left: 30%;
-  transform: rotate(80deg);
-  animation: flyDown 20s linear infinite 7s;
+  animation: flyDiagonal3 16s linear infinite 2s;
 }
 
 .trail:nth-child(4) {
-  bottom: -50px;
-  left: 60%;
-  transform: rotate(-80deg);
-  animation: flyUp 16s linear infinite 11s;
+  animation: flyDiagonal4 20s linear infinite 6s;
 }
 
 .trail:nth-child(5) {
-  top: 15%;
-  left: -200px;
-  transform: rotate(30deg);
-  animation: flyRight 22s linear infinite 5s;
+  animation: flyDiagonal5 25s linear infinite 1s;
 }
 
 .trail:nth-child(6) {
-  top: 65%;
-  right: -200px;
-  transform: rotate(-25deg);
-  animation: flyLeft 14s linear infinite 9s;
+  animation: flyDiagonal6 14s linear infinite 5s;
 }
 
 .trail:nth-child(7) {
-  top: -50px;
-  left: 70%;
-  transform: rotate(60deg);
-  animation: flyDown 19s linear infinite 2s;
+  animation: flyDiagonal7 19s linear infinite 3s;
 }
 
 .trail:nth-child(8) {
-  bottom: -50px;
-  left: 20%;
-  transform: rotate(-70deg);
-  animation: flyUp 21s linear infinite 6s;
+  animation: flyDiagonal8 21s linear infinite 7s;
 }
 
-/* Animation keyframes for each direction */
-@keyframes flyRight {
+/* Diagonal animations that move along the rotated axis */
+@keyframes flyDiagonal1 {
   0% {
-    left: -200px;
+    transform: translate(-200px, 20%) rotate(15deg);
     opacity: 0;
   }
   10% { opacity: 0.6; }
   15% { opacity: 0.8; }
   50% { opacity: 0.7; }
-  85% { opacity: 0.4; }
   90% { opacity: 0.2; }
   100% {
-    left: calc(100% + 200px);
+    transform: translate(calc(100vw + 200px), calc(20% - 100px)) rotate(15deg);
     opacity: 0;
   }
 }
 
-@keyframes flyLeft {
+@keyframes flyDiagonal2 {
   0% {
-    right: -200px;
+    transform: translate(calc(100vw + 200px), 40%) rotate(-10deg);
     opacity: 0;
   }
   10% { opacity: 0.6; }
   15% { opacity: 0.8; }
   50% { opacity: 0.7; }
-  85% { opacity: 0.4; }
   90% { opacity: 0.2; }
   100% {
-    right: calc(100% + 200px);
+    transform: translate(-200px, calc(40% + 150px)) rotate(-10deg);
     opacity: 0;
   }
 }
 
-@keyframes flyDown {
+@keyframes flyDiagonal3 {
   0% {
-    top: -50px;
+    transform: translate(30%, -50px) rotate(45deg);
     opacity: 0;
   }
   10% { opacity: 0.6; }
   15% { opacity: 0.8; }
   50% { opacity: 0.7; }
-  85% { opacity: 0.4; }
   90% { opacity: 0.2; }
   100% {
-    top: calc(100% + 50px);
+    transform: translate(calc(30% + 200px), calc(100vh + 50px)) rotate(45deg);
     opacity: 0;
   }
 }
 
-@keyframes flyUp {
+@keyframes flyDiagonal4 {
   0% {
-    bottom: -50px;
+    transform: translate(70%, calc(100vh + 50px)) rotate(-30deg);
     opacity: 0;
   }
   10% { opacity: 0.6; }
   15% { opacity: 0.8; }
   50% { opacity: 0.7; }
-  85% { opacity: 0.4; }
   90% { opacity: 0.2; }
   100% {
-    bottom: calc(100% + 50px);
+    transform: translate(calc(70% - 150px), -50px) rotate(-30deg);
+    opacity: 0;
+  }
+}
+
+@keyframes flyDiagonal5 {
+  0% {
+    transform: translate(-200px, 70%) rotate(60deg);
+    opacity: 0;
+  }
+  10% { opacity: 0.6; }
+  15% { opacity: 0.8; }
+  50% { opacity: 0.7; }
+  90% { opacity: 0.2; }
+  100% {
+    transform: translate(calc(100vw + 200px), calc(70% - 200px)) rotate(60deg);
+    opacity: 0;
+  }
+}
+
+@keyframes flyDiagonal6 {
+  0% {
+    transform: translate(calc(100vw + 200px), 85%) rotate(-25deg);
+    opacity: 0;
+  }
+  10% { opacity: 0.6; }
+  15% { opacity: 0.8; }
+  50% { opacity: 0.7; }
+  90% { opacity: 0.2; }
+  100% {
+    transform: translate(-200px, calc(85% + 100px)) rotate(-25deg);
+    opacity: 0;
+  }
+}
+
+@keyframes flyDiagonal7 {
+  0% {
+    transform: translate(80%, -50px) rotate(75deg);
+    opacity: 0;
+  }
+  10% { opacity: 0.6; }
+  15% { opacity: 0.8; }
+  50% { opacity: 0.7; }
+  90% { opacity: 0.2; }
+  100% {
+    transform: translate(calc(80% - 100px), calc(100vh + 50px)) rotate(75deg);
+    opacity: 0;
+  }
+}
+
+@keyframes flyDiagonal8 {
+  0% {
+    transform: translate(20%, calc(100vh + 50px)) rotate(-60deg);
+    opacity: 0;
+  }
+  10% { opacity: 0.6; }
+  15% { opacity: 0.8; }
+  50% { opacity: 0.7; }
+  90% { opacity: 0.2; }
+  100% {
+    transform: translate(calc(20% + 150px), -50px) rotate(-60deg);
     opacity: 0;
   }
 }
