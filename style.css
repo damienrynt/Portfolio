@@ -24,7 +24,7 @@ body {
   min-height: 100vh;
 }
 
-/* Jet Stream Trails - Simplified Diagonal */
+/* Jet Stream Trails - Simplified */
 .jet-trail {
   position: fixed;
   top: 0;
@@ -43,66 +43,38 @@ body {
     rgba(255, 255, 255, 0.8) 50%, 
     rgba(255, 255, 255, 0) 100%);
   height: 1px;
-  width: 150px;
+  width: 200px;
   opacity: 0;
   filter: blur(0.5px);
 }
 
-/* Diagonal from top-left to bottom-right */
+/* 4 trails with proper diagonal movement */
 .trail:nth-child(1) {
   top: -100px;
   left: -200px;
-  transform: rotate(30deg);
-  animation: flyDiagonalTR 18s linear infinite 0s;
+  transform: rotate(45deg);
+  animation: flyDiagonalTR 20s linear infinite 0s;
 }
 
 .trail:nth-child(2) {
   top: -100px;
   right: -200px;
-  transform: rotate(-30deg);
-  animation: flyDiagonalTL 22s linear infinite 4s;
+  transform: rotate(135deg);
+  animation: flyDiagonalTL 18s linear infinite 5s;
 }
 
 .trail:nth-child(3) {
   bottom: -100px;
   left: -200px;
-  transform: rotate(-30deg);
-  animation: flyDiagonalBR 16s linear infinite 2s;
+  transform: rotate(-45deg);
+  animation: flyDiagonalBR 22s linear infinite 3s;
 }
 
 .trail:nth-child(4) {
   bottom: -100px;
   right: -200px;
-  transform: rotate(30deg);
-  animation: flyDiagonalBL 20s linear infinite 6s;
-}
-
-.trail:nth-child(5) {
-  top: -150px;
-  left: -100px;
-  transform: rotate(45deg);
-  animation: flyDiagonalTR 25s linear infinite 1s;
-}
-
-.trail:nth-child(6) {
-  top: -150px;
-  right: -100px;
-  transform: rotate(-45deg);
-  animation: flyDiagonalTL 14s linear infinite 5s;
-}
-
-.trail:nth-child(7) {
-  bottom: -150px;
-  left: -100px;
-  transform: rotate(-45deg);
-  animation: flyDiagonalBR 19s linear infinite 3s;
-}
-
-.trail:nth-child(8) {
-  bottom: -150px;
-  right: -100px;
-  transform: rotate(45deg);
-  animation: flyDiagonalBL 21s linear infinite 7s;
+  transform: rotate(-135deg);
+  animation: flyDiagonalBL 16s linear infinite 7s;
 }
 
 /* Diagonal animations */
