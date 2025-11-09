@@ -88,16 +88,16 @@ body {
     opacity: 0;
   }
   10% {
-    opacity: 0.2;
-  }
-  20% {
     opacity: 0.4;
   }
-  50% {
+  20% {
     opacity: 0.6;
   }
-  85% {
+  50% {
     opacity: 0.9;
+  }
+  85% {
+    opacity: 0.4;
   }
   100% {
     transform: rotate(var(--angle)) translateX(calc(100vw + 300px));
