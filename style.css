@@ -24,7 +24,7 @@ body {
   min-height: 100vh;
 }
 
-/* Jet Stream Trails - Fixed Positioning */
+/* Jet Stream Trails - Simplified */
 .jet-trail {
   position: fixed;
   top: 0;
@@ -48,92 +48,124 @@ body {
   filter: blur(0.5px);
 }
 
-/* Individual trail properties with fixed positioning */
+/* Different animation directions */
 .trail:nth-child(1) {
-  --angle: 15deg;
-  --startX: -100px;
-  --startY: 20%;
-  animation: flyDiagonal 18s linear infinite 0s;
+  top: 20%;
+  left: -200px;
+  transform: rotate(15deg);
+  animation: flyRight 15s linear infinite 0s;
 }
 
 .trail:nth-child(2) {
-  --angle: -10deg;
-  --startX: calc(100% + 100px);
-  --startY: 40%;
-  animation: flyDiagonal 22s linear infinite 4s;
+  top: 40%;
+  right: -200px;
+  transform: rotate(-10deg);
+  animation: flyLeft 18s linear infinite 3s;
 }
 
 .trail:nth-child(3) {
-  --angle: 45deg;
-  --startX: 50%;
-  --startY: -50px;
-  animation: flyDiagonal 16s linear infinite 2s;
+  top: -50px;
+  left: 30%;
+  transform: rotate(80deg);
+  animation: flyDown 20s linear infinite 7s;
 }
 
 .trail:nth-child(4) {
-  --angle: -30deg;
-  --startX: 80%;
-  --startY: calc(100% + 50px);
-  animation: flyDiagonal 20s linear infinite 6s;
+  bottom: -50px;
+  left: 60%;
+  transform: rotate(-80deg);
+  animation: flyUp 16s linear infinite 11s;
 }
 
 .trail:nth-child(5) {
-  --angle: 60deg;
-  --startX: -100px;
-  --startY: 70%;
-  animation: flyDiagonal 25s linear infinite 1s;
+  top: 15%;
+  left: -200px;
+  transform: rotate(30deg);
+  animation: flyRight 22s linear infinite 5s;
 }
 
 .trail:nth-child(6) {
-  --angle: -75deg;
-  --startX: calc(100% + 100px);
-  --startY: 85%;
-  animation: flyDiagonal 14s linear infinite 5s;
+  top: 65%;
+  right: -200px;
+  transform: rotate(-25deg);
+  animation: flyLeft 14s linear infinite 9s;
 }
 
 .trail:nth-child(7) {
-  --angle: 85deg;
-  --startX: 90%;
-  --startY: -50px;
-  animation: flyDiagonal 19s linear infinite 3s;
+  top: -50px;
+  left: 70%;
+  transform: rotate(60deg);
+  animation: flyDown 19s linear infinite 2s;
 }
 
 .trail:nth-child(8) {
-  --angle: -50deg;
-  --startX: -100px;
-  --startY: calc(100% + 50px);
-  animation: flyDiagonal 21s linear infinite 7s;
+  bottom: -50px;
+  left: 20%;
+  transform: rotate(-70deg);
+  animation: flyUp 21s linear infinite 6s;
 }
 
-/* Fixed animation */
-@keyframes flyDiagonal {
+/* Animation keyframes for each direction */
+@keyframes flyRight {
   0% {
-    transform: 
-      translate(var(--startX), var(--startY)) 
-      rotate(var(--angle)) 
-      translateX(-100px);
+    left: -200px;
     opacity: 0;
   }
-  10% {
-    opacity: 0.6;
-  }
-  15% {
-    opacity: 0.8;
-  }
-  50% {
-    opacity: 0.7;
-  }
-  85% {
-    opacity: 0.4;
-  }
-  90% {
-    opacity: 0.2;
-  }
+  10% { opacity: 0.6; }
+  15% { opacity: 0.8; }
+  50% { opacity: 0.7; }
+  85% { opacity: 0.4; }
+  90% { opacity: 0.2; }
   100% {
-    transform: 
-      translate(var(--startX), var(--startY)) 
-      rotate(var(--angle)) 
-      translateX(calc(100vw + 200px));
+    left: calc(100% + 200px);
+    opacity: 0;
+  }
+}
+
+@keyframes flyLeft {
+  0% {
+    right: -200px;
+    opacity: 0;
+  }
+  10% { opacity: 0.6; }
+  15% { opacity: 0.8; }
+  50% { opacity: 0.7; }
+  85% { opacity: 0.4; }
+  90% { opacity: 0.2; }
+  100% {
+    right: calc(100% + 200px);
+    opacity: 0;
+  }
+}
+
+@keyframes flyDown {
+  0% {
+    top: -50px;
+    opacity: 0;
+  }
+  10% { opacity: 0.6; }
+  15% { opacity: 0.8; }
+  50% { opacity: 0.7; }
+  85% { opacity: 0.4; }
+  90% { opacity: 0.2; }
+  100% {
+    top: calc(100% + 50px);
+    opacity: 0;
+  }
+}
+
+@keyframes flyUp {
+  0% {
+    bottom: -50px;
+    opacity: 0;
+  }
+  10% { opacity: 0.6; }
+  15% { opacity: 0.8; }
+  50% { opacity: 0.7; }
+  85% { opacity: 0.4; }
+  90% { opacity: 0.2; }
+  100% {
+    bottom: calc(100% + 50px);
     opacity: 0;
   }
 }
