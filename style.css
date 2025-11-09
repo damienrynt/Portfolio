@@ -40,10 +40,10 @@ body {
   position: absolute;
   width: 200px;
   height: 1px;
-  background: linear-gradient(270deg,
-    rgba(255, 255, 255, 0) 0%,     /* tail (transparent) */
-    rgba(255, 255, 255, 0.6) 40%,  /* mid fade */
-    rgba(255, 255, 255, 0.9) 100%);/* head (bright) */
+ background: linear-gradient(90deg,
+    rgba(255, 255, 255, 0.9) 0%,   /* head (bright) at left, transform-origin left */
+    rgba(255, 255, 255, 0.6) 40%,  /* mid */
+    rgba(255, 255, 255, 0) 100%);  /* tail (transparent) at right */
   filter: blur(0.5px);
   opacity: 0;
   transform-origin: left center;
