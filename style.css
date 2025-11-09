@@ -40,11 +40,10 @@ body {
   position: absolute;
   width: 200px;
   height: 1px;
-  /* Fade only at the tail (right side of motion) */
   background: linear-gradient(90deg,
-    rgba(255, 255, 255, 0.9) 0%,   /* bright head */
-    rgba(255, 255, 255, 0.6) 60%,  /* mid intensity */
-    rgba(255, 255, 255, 0) 100%);  /* fading tail */
+    rgba(255, 255, 255, 0) 100%),
+    rgba(255, 255, 255, 0.6) 60%,
+    rgba(255, 255, 255, 0.9) 0%;
   filter: blur(0.5px);
   opacity: 0;
   transform-origin: left center;
