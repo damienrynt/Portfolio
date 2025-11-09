@@ -11,6 +11,7 @@ html {
   scroll-padding-top: 80px;
 }
 
+/* ===== BACKGROUND SKY + JET TRAILS ===== */
 body {
   font-family: "Rubik", sans-serif;
   background: linear-gradient(to right, #0d1b2a, #1b2f4a, #223b61);
@@ -20,11 +21,59 @@ body {
   color: #e0e0e0;
   line-height: 1.6;
   overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
 }
 
+/* Create layers for the contrails */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 100%;
+  pointer-events: none;
+  background-repeat: repeat;
+  opacity: 0.25;
+  z-index: 0;
+}
+
+/* Jet stream trails (thin white streaks) */
+body::before {
+  background-image: 
+    linear-gradient(115deg, rgba(255,255,255,0.15) 2px, transparent 2px),
+    linear-gradient(120deg, rgba(255,255,255,0.1) 1px, transparent 1px),
+    linear-gradient(125deg, rgba(255,255,255,0.12) 1px, transparent 1px);
+  background-size: 400px 200px;
+  animation: jetTrails 20s linear infinite;
+}
+
+body::after {
+  background-image:
+    linear-gradient(110deg, rgba(255,255,255,0.1) 1px, transparent 1px),
+    linear-gradient(130deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+  background-size: 500px 300px;
+  animation: jetTrailsReverse 35s linear infinite;
+}
+
+/* Trail animations (slow diagonal movement) */
+@keyframes jetTrails {
+  from { background-position: 0 0; }
+  to { background-position: 400px 200px; }
+}
+@keyframes jetTrailsReverse {
+  from { background-position: 0 0; }
+  to { background-position: -500px -300px; }
+}
+
+/* ===== TEXT & STRUCTURE ===== */
 h1, h2, h3, h4, h5, h6 {
   font-family: "Michroma", sans-serif;
   letter-spacing: 1px;
+  position: relative;
+  z-index: 1;
 }
 
 .rotating-gear {
@@ -32,6 +81,7 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 0.5;
   transform-origin: center;
   transition: transform 0.1s linear;
+  z-index: 1;
 }
 
 .scroll-cue {
@@ -41,6 +91,7 @@ h1, h2, h3, h4, h5, h6 {
 .scroll-cue-img {
   width: 60px;           
   animation: bounce 2s infinite;
+  z-index: 1;
 }
 
 @keyframes bounce {
@@ -57,7 +108,7 @@ header {
   padding: 1rem 2rem;
   position: sticky;
   top: 0;
-  z-index: 5;
+  z-index: 10;
 }
 
 .logo {
@@ -93,7 +144,6 @@ nav a:hover {
   transition: color 0.3s;   
   padding: 0;               
 }
-
 #lang-toggle:hover {
   color: #aaa;             
 }
@@ -101,6 +151,8 @@ nav a:hover {
 #hero {
   text-align: center;
   padding: 7rem 1rem 4rem;
+  position: relative;
+  z-index: 1;
 }
 #hero h1 {
   font-size: 2.5rem;
@@ -110,11 +162,6 @@ nav a:hover {
 #hero p {
   color: #b5b5b5;
   font-size: 1.1rem;
-}
-
-#hero {
-  text-align: center;
-  padding: 7rem 1rem 4rem;
 }
 
 .hero-content {
@@ -157,8 +204,6 @@ nav a:hover {
   font-size: 1.2rem;
   letter-spacing: 1px;
 }
-
-
 
 .content-section {
   max-width: 1100px; 
@@ -264,4 +309,5 @@ footer {
   color: #e0e0e0;
   font-size: 0.9rem;
   margin-top: 3rem;
+  z-index: 1;
 }
