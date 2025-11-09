@@ -40,67 +40,65 @@ body {
   position: absolute;
   width: 200px;
   height: 1px;
- background: linear-gradient(90deg,
-    rgba(255, 255, 255, 0.9) 0%,   /* head (bright) at left, transform-origin left */
-    rgba(255, 255, 255, 0.6) 40%,  /* mid */
-    rgba(255, 255, 255, 0) 100%);  /* tail (transparent) at right */
+  background: linear-gradient(
+    to right,                    /* head → tail along local X */
+    rgba(255, 255, 255, 1) 0%,   /* bright head */
+    rgba(255, 255, 255, 0.6) 50%,/* mid fade */
+    rgba(255, 255, 255, 0) 100%  /* transparent tail */
+  );
   filter: blur(0.5px);
   opacity: 0;
-  transform-origin: left center;
+  transform-origin: left center; /* left edge is the starting point */
 }
 
-/* === Trail 1: Top-left corner, goes diagonally down-right === */
+/* === Trail 1: Top-left corner, down-right === */
 .trail:nth-child(1) {
-  --angle: 35deg;
   top: 5%;
   left: 0%;
+  --angle: 35deg;
+  --dir: 1; /* translate forward along X */
   animation: flyDiagonal 18s linear infinite 0s;
 }
 
-/* === Trail 2: Middle-right, goes diagonally up-left === */
+/* === Trail 2: Middle-right, up-left === */
 .trail:nth-child(2) {
-  --angle: 200deg;
   top: 50%;
   left: 100%;
+  --angle: 200deg;
+  --dir: -1; /* translate backward along X */
   animation: flyDiagonal 22s linear infinite 4s;
 }
 
-/* === Trail 3: Middle-left, goes diagonally up-right === */
+/* === Trail 3: Middle-left, up-right === */
 .trail:nth-child(3) {
-  --angle: -20deg;
   top: 50%;
   left: 0%;
+  --angle: -20deg;
+  --dir: 1;
   animation: flyDiagonal 20s linear infinite 2s;
 }
 
-/* === Trail 4: Near top, a bit to the right, goes diagonally down-left === */
+/* === Trail 4: Top-right-ish, down-left === */
 .trail:nth-child(4) {
-  --angle: 150deg;
   top: 10%;
   left: 70%;
+  --angle: 150deg;
+  --dir: -1;
   animation: flyDiagonal 24s linear infinite 6s;
 }
 
-/* === Animation === */
+/* === Animation: move forward along element’s local X axis === */
 @keyframes flyDiagonal {
   0% {
-    transform: rotate(var(--angle)) translateX(-200px);
+    transform: rotate(var(--angle)) translateX(calc(var(--dir) * -200px));
     opacity: 0;
   }
-  10% {
-    opacity: 0.8;
-  }
-  25% {
-    opacity: 1;
-  }
-  60% {
-    opacity: 0.9;
-  }
-  85% {
-    opacity: 0.4;
-  }
+  10% { opacity: 0.8; }
+  25% { opacity: 1; }
+  60% { opacity: 0.9; }
+  85% { opacity: 0.4; }
   100% {
-    transform: rotate(var(--angle)) translateX(calc(100vw + 300px));
+    transform: rotate(var(--angle)) translateX(calc(var(--dir) * (100vw + 300px)));
     opacity: 0;
   }
 }
