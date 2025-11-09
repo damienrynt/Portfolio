@@ -40,10 +40,11 @@ body {
   position: absolute;
   width: 200px;
   height: 1px;
+  /* Fade only at the tail (right side of motion) */
   background: linear-gradient(90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.8) 50%,
-    rgba(255, 255, 255, 0) 100%);
+    rgba(255, 255, 255, 0.9) 0%,   /* bright head */
+    rgba(255, 255, 255, 0.6) 60%,  /* mid intensity */
+    rgba(255, 255, 255, 0) 100%);  /* fading tail */
   filter: blur(0.5px);
   opacity: 0;
   transform-origin: left center;
@@ -88,13 +89,13 @@ body {
     opacity: 0;
   }
   10% {
-    opacity: 0.6;
+    opacity: 0.8;
   }
-  20% {
+  25% {
+    opacity: 1;
+  }
+  60% {
     opacity: 0.9;
-  }
-  50% {
-    opacity: 0.7;
   }
   85% {
     opacity: 0.4;
@@ -105,7 +106,7 @@ body {
   }
 }
 
-/* Keep all content above trails */
+/* Keep content above trails */
 .content-section, header, #hero, footer {
   position: relative;
   z-index: 2;
