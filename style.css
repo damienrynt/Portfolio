@@ -52,13 +52,13 @@ body {
 .trail:nth-child(1) {
   --angle: 15deg;
   --startX: -20%;
-  --startY: 20%;
+  --startY: 80%;
   animation: flyDiagonal 18s linear infinite 0s;
 }
 
 .trail:nth-child(2) {
   --angle: -165deg;
-  --startX: 120%;
+  --startX: 110%;
   --startY: 40%;
   animation: flyDiagonal 22s linear infinite 4s;
 }
@@ -66,12 +66,12 @@ body {
 .trail:nth-child(3) {
   --angle: 45deg;
   --startX: 50%;
-  --startY: -10%;
+  --startY: 110%;
   animation: flyDiagonal 16s linear infinite 2s;
 }
 
 .trail:nth-child(4) {
-  --angle: -30deg;
+  --angle: 110deg;
   --startX: 80%;
   --startY: 110%;
   animation: flyDiagonal 20s linear infinite 6s;
