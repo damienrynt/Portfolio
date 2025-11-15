@@ -111,6 +111,20 @@ body {
   z-index: 2;
 }
 
+/* === STAR SKY === */
+.star-sky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200%; /* make it taller than the viewport */
+  background: radial-gradient(circle, white 1px, transparent 1px);
+  background-size: 3px 3px; /* spacing of stars */
+  z-index: 0;
+  pointer-events: none;
+  transform: translateY(0);
+  transition: transform 0.1s linear;
+}
 
 /* ===== TEXT & STRUCTURE ===== */
 h1, h2, h3, h4, h5, h6 {
