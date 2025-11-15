@@ -14,10 +14,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-<script>
-  const starSky = document.querySelector('.star-sky');
-  window.addEventListener('scroll', () => {
-    const scrollPercent = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-    starSky.style.transform = `translateY(-${scrollPercent * 100}%)`;
-  });
-</script>
+const starSky = document.querySelector('.star-sky');
+window.addEventListener('scroll', () => {
+  const scrollPercent = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+  starSky.style.transform = `translateY(-${scrollPercent * 100}%)`;
+});
