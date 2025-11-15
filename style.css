@@ -111,49 +111,6 @@ body {
   z-index: 2;
 }
 
-.star-sky {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 200%; /* taller than viewport for scroll effect */
-  background: black;
-  z-index: 0;
-  pointer-events: none;
-  transform: translateY(0);
-  overflow: hidden;
-}
-
-/* Create multiple stars using pseudo-elements */
-.star-sky::before,
-.star-sky::after {
-  content: '';
-  position: absolute;
-  width: 200%;
-  height: 200%;
-  background: transparent;
-  box-shadow: 
-    10px 20px white, 50px 80px white, 120px 40px white,
-    200px 100px white, 300px 150px white, 400px 200px white,
-    600px 50px white, 700px 250px white, 800px 120px white,
-    900px 200px white, 1000px 300px white;
-  animation: twinkle 5s infinite alternate;
-}
-
-.star-sky::after {
-  box-shadow:
-    20px 50px white, 60px 180px white, 140px 90px white,
-    220px 300px white, 310px 160px white, 410px 80px white,
-    620px 150px white, 720px 250px white, 820px 120px white,
-    920px 200px white, 1020px 300px white;
-}
-
-@keyframes twinkle {
-  0% { opacity: 0.7; }
-  50% { opacity: 1; }
-  100% { opacity: 0.7; }
-}
-
 /* ===== TEXT & STRUCTURE ===== */
 h1, h2, h3, h4, h5, h6 {
   font-family: "Michroma", sans-serif;
