@@ -316,13 +316,20 @@ nav a:hover {
 }
 .media {
   display: flex;
-  gap: 0.7rem;
-  margin-top: 0.8rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
 }
 .media img {
-  width: 48%;
-  border-radius: 6px;
+  width: 220px;
+  height: 160px;
   object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+.media img:hover {
+  transform: scale(1.03);
 }
 .links a {
   display: inline-block;
