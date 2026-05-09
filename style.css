@@ -323,8 +323,8 @@ nav a:hover {
 }
 
 .media img {
-  width: 320px;
-  height: 220px;
+  width: 400px;
+  height: 300px;
   object-fit: contain;
   background-color: #0b0b0b;
   border-radius: 8px;
