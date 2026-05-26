@@ -80,6 +80,7 @@ const projects = {
       <p>Despite strict time constraints, our team completed the project within 24 hours while coordinating and integrating multiple subsystems into a single functional simulation.</p>
     `,
     skills: ['JavaScript (p5.js)', 'Physics Simulation', 'Time Management', 'Teamwork'],
+    images: ['Images/mcgillhack.jpg'],
     links: [
       { href: 'https://youtu.be/J0Q34lAa_xw', label: '▶ Watch the Simulation' },
       { href: 'https://devpost.com/software/project-title-to-be-changed', label: '🌐 View More' }
