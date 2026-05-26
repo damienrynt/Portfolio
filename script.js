@@ -34,12 +34,12 @@ const projects = {
     body: `
       <p>As part of an 8-hour engineering competition, our team designed and built an Archimedes' screw-inspired structure, successfully moving balls above and to the side of their starting position using the potential energy of a 200g mass.</p>
       <ul>
-        <li>Optimised the design to maximise calculated efficiency and the number of balls moved, achieving the transport of 5 balls using only 25g out of the 200g mass provided.</li>
+        <li>Optimized the design to maximise calculated efficiency and the number of balls moved, achieving the transport of 5 balls using only 25g out of the 200g mass provided.</li>
         <li>Collaborated effectively as a team to propose design ideas, distribute tasks, and assemble a functional project under time pressure.</li>
       </ul>
-      <p>The design earned us the <strong>Novelty Award</strong>.</p>
+      <p>The design earned us the Novelty Award.</p>
     `,
-    skills: ['Mechanical Design', 'Rapid Prototyping', 'Team Collaboration', 'Materials Engineering'],
+    skills: ['Problem Solving', 'Rapid Prototyping', 'Team Collaboration'],
     images: ['Images/archimedes.jpg'],
     links: [],
     tileText: 'Gravity-powered ball transport mechanism built in 8h (Novelty Award winners).'
@@ -55,6 +55,7 @@ const projects = {
     skills: ['Machining', 'SolidWorks', 'GD&T'],
     images: ['Images/keychain1.jpg', 'Images/keychain2.jpg'],
     flipImages: [true, false],
+    rotateImages: [90, 0],
     links: [],
     tileText: 'Precision-machined part with full SolidWorks engineering drawing.'
   },
@@ -103,8 +104,9 @@ function openModal(key) {
 
   const imagesHtml = p.images.length
     ? `<div class="modal-images">${p.images.map((src, i) => {
-        const flip = p.flipImages && p.flipImages[i] ? ' class="flip-h"' : '';
-        return `<img src="${src}" alt=""${flip}>`;
+        const rotate = p.rotateImages ? p.rotateImages[i] : 0;
+        const style = rotate ? ` style="transform: rotate(${rotate}deg); object-fit: contain; width: auto; max-height: 260px; margin: 0 auto; display: block;"` : '';
+        return `<img src="${src}" alt=""${style}>`;
       }).join('')}</div>`
     : '';
 
