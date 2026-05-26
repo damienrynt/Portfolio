@@ -32,47 +32,49 @@ const projects = {
     title: "Archimedes' Screw",
     date: "Spring 2026",
     body: `
-      <p>As part of a 24-hour engineering competition, our team designed and built a machine capable of transporting ping pong balls from a table surface to an elevated target — powered entirely by a single falling mass.</p>
-      <p>Rather than relying on the maximum allowed mass, we deliberately scaled down to optimise efficiency. Our final design — an Archimedes' screw constructed from paper, cardboard, and metal framing — moved five balls through 29 cm of horizontal travel and 22 cm of vertical lift on a single 59 cm mass drop.</p>
+      <p>As part of an 8-hour engineering competition, our team designed and built an Archimedes' screw-inspired structure, successfully moving balls above and to the side of their starting position using the potential energy of a 200g mass.</p>
       <ul>
-        <li>Designed and assembled the full screw mechanism within strict material constraints</li>
-        <li>Optimised mass-to-output ratio to maximise ball throughput per drop</li>
-        <li>Coordinated rapid prototyping and testing cycles under time pressure</li>
+        <li>Optimised the design to maximise calculated efficiency and the number of balls moved, achieving the transport of 5 balls using only 25g out of the 200g mass provided.</li>
+        <li>Collaborated effectively as a team to propose design ideas, distribute tasks, and assemble a functional project under time pressure.</li>
       </ul>
-      <p>The design was recognised with the <strong>Novelty Award</strong> for its unconventional approach.</p>
+      <p>The design earned us the <strong>Novelty Award</strong>.</p>
     `,
     skills: ['Mechanical Design', 'Rapid Prototyping', 'Team Collaboration', 'Materials Engineering'],
     images: ['Images/archimedes.jpg'],
-    links: []
+    links: [],
+    tileText: 'Gravity-powered ball transport mechanism built in 8h (Novelty Award winners).'
   },
 
   keychain: {
     title: 'Keychain',
-    date: '2024',
+    date: 'Fall 2025',
     body: `
       <p>Machined a keychain from raw stock using a lathe, milling machine, drill press, and various hand tools.</p>
       <p>Created a SolidWorks assembly and an engineering drawing with GD&amp;T constraints.</p>
     `,
     skills: ['Machining', 'SolidWorks', 'GD&T'],
     images: ['Images/keychain1.jpg', 'Images/keychain2.jpg'],
-    links: []
+    flipImages: [true, false],
+    links: [],
+    tileText: 'Precision-machined part with full SolidWorks engineering drawing.'
   },
 
   loro: {
     title: 'The Loro Toy: A Target Shooting Game',
-    date: '2024',
+    date: 'Fall 2025',
     body: `
       <p>Designed and fabricated a ball launching mechanism based on spring compression.</p>
       <p>The blaster successfully launched balls across several meters and could be aimed at moving targets.</p>
     `,
     skills: ['CAD (SolidWorks)', 'Power Tools', 'Prototyping', 'Task Distribution'],
     images: ['Images/lorotoy.jpg'],
-    links: []
+    links: [],
+    tileText: 'Spring-compression ball launcher that hits moving targets across meters.'
   },
 
   mars: {
     title: 'Gateway to Mars',
-    date: '2023',
+    date: 'Fall 2023',
     body: `
       <p>Simulated the Hohmann Transfer, demonstrating the optimal launch window for transferring a spacecraft from Earth's orbit to Mars's orbit.</p>
       <p>Placed second overall in the 2023 McGill Physics Hackathon using JavaScript and the p5.js library.</p>
@@ -83,7 +85,8 @@ const projects = {
     links: [
       { href: 'https://youtu.be/J0Q34lAa_xw', label: '▶ Watch the Simulation' },
       { href: 'https://devpost.com/software/project-title-to-be-changed', label: '🌐 View More' }
-    ]
+    ],
+    tileText: '2nd-place orbital transfer simulation at McGill Physics Hackathon 2023.'
   }
 };
 
@@ -99,7 +102,10 @@ function openModal(key) {
   if (!p) return;
 
   const imagesHtml = p.images.length
-    ? `<div class="modal-images">${p.images.map(src => `<img src="${src}" alt="">`).join('')}</div>`
+    ? `<div class="modal-images">${p.images.map((src, i) => {
+        const flip = p.flipImages && p.flipImages[i] ? ' class="flip-h"' : '';
+        return `<img src="${src}" alt=""${flip}>`;
+      }).join('')}</div>`
     : '';
 
   const linksHtml = p.links.length

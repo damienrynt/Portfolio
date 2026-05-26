@@ -99,10 +99,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(0, 8, 20, 0.55);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--border);
+  background: transparent;
 }
 
 .logo {
@@ -579,9 +576,14 @@ nav a:hover { color: var(--text-primary); }
 .modal-body .modal-images img {
   width: 100%;
   border-radius: var(--radius-sm);
-  object-fit: cover;
+  object-fit: contain;
   aspect-ratio: 4 / 3;
+  background: #080f18;
   border: 1px solid var(--border);
+}
+
+.modal-body .modal-images img.flip-h {
+  transform: scaleX(-1);
 }
 
 .modal-body .modal-skills {
