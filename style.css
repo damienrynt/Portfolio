@@ -963,3 +963,202 @@ footer {
     word-break: break-all;
   }
 }
+
+
+/* ============================================================
+   RACE TRACK TIMELINE
+============================================================ */
+
+.racetrack-timeline {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto 5rem;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  isolation: isolate;
+}
+
+/* ── Road spine: pure CSS, no image ──
+   JS injects .road-spine > .road-spine-inner inside racetrack.
+   Inner is sized/rotated in JS so one seamless stripe covers all rows.
+   Using CSS road means no PNG black-bg blending issues with the car. */
+.road-spine {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.road-spine-inner {
+  position: absolute;
+  background-image: url('Images/road.jpg');
+  background-repeat: repeat-x;
+  background-size: auto 180px;
+  background-position: left center;
+}
+
+/* Road cell — spacer only, road drawn by spine */
+.track-cell--road {
+  align-self: stretch;
+  width: 180px;
+}
+
+/* Hide old img road tiles */
+.road-tile { display: none; }
+
+/* ── START / FINISH caps ── */
+.track-cap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 5;           /* above road spine */
+  width: 100%;
+}
+
+.track-label {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  color: rgba(255,255,255,0.85);
+  text-align: center;
+  padding: 0.6rem 1.2rem;
+  position: relative;
+  z-index: 6;
+  /* solid bg so road spine doesn't bleed through the text */
+  background: var(--bg-deep);
+  width: 180px;
+}
+
+/* Finish line checkerboard */
+.finish-line {
+  width: 180px;
+  height: 22px;
+  position: relative;
+  z-index: 6;
+  background: repeating-linear-gradient(
+    90deg,
+    #fff 0px, #fff 18px,
+    #111 18px, #111 36px
+  );
+  border-top: 3px solid rgba(255,255,255,0.7);
+  border-bottom: 3px solid rgba(255,255,255,0.7);
+}
+
+/* ── Each row: 3 columns ── */
+.track-row {
+  display: grid;
+  grid-template-columns: 1fr 180px 1fr;
+  width: 100%;
+  min-height: 160px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* ── F1 car ── */
+.f1-car {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) rotate(90deg);
+  width: 155px;
+  pointer-events: none;
+  z-index: 10;
+  top: 0;
+  filter: drop-shadow(0 0 10px rgba(59,130,246,0.45));
+  /* isolate so this element composites on top of road independently */
+  isolation: isolate;
+}
+
+/* Card cells */
+.track-cell--card {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1rem 0;
+  position: relative;
+  z-index: 3;
+}
+
+.track-cell--card-left {
+  justify-content: flex-end;
+  position: relative;
+  z-index: 3;
+}
+
+/* Connector lines */
+.tp-connector {
+  height: 2px;
+  width: 32px;
+  flex-shrink: 0;
+  background: linear-gradient(90deg, rgba(59,130,246,0.6), rgba(59,130,246,0.1));
+}
+.tp-connector--right {
+  background: linear-gradient(270deg, rgba(59,130,246,0.6), rgba(59,130,246,0.1));
+}
+
+/* Card width */
+.track-cell--card .more-tile,
+.track-cell--card-left .more-tile {
+  width: 210px;
+  flex-shrink: 0;
+}
+
+/* Date badge */
+.tp-date {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  padding: 0 1rem 0.75rem;
+  font-family: var(--font-display);
+}
+
+/* ── Blue glow on featured tiles ── */
+.tile--glow {
+  box-shadow:
+    0 0 0 1px rgba(59,130,246,0.35),
+    0 0 18px rgba(59,130,246,0.25),
+    0 0 40px rgba(59,130,246,0.1);
+}
+.tile--glow:hover {
+  box-shadow:
+    0 0 0 1px rgba(59,130,246,0.6),
+    0 0 28px rgba(59,130,246,0.4),
+    0 0 60px rgba(59,130,246,0.18);
+}
+
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  .track-row { grid-template-columns: 1fr 130px 1fr; }
+  .road-spine { width: 130px; }
+  .finish-line,
+  .track-label { width: 130px; }
+  .f1-car { width: 110px; }
+  .track-cell--road { width: 130px; }
+  .track-cell--card .more-tile,
+  .track-cell--card-left .more-tile { width: 175px; }
+}
+
+@media (max-width: 640px) {
+  .track-row {
+    grid-template-columns: 1fr 80px 1fr;
+    min-height: 120px;
+  }
+  .road-spine { width: 80px; }
+  .finish-line,
+  .track-label { width: 80px; font-size: 0.55rem; padding: 0.4rem 0.3rem; }
+  .f1-car { width: 68px; }
+  .track-cell--road { width: 80px; }
+  .tp-connector { width: 16px; }
+  .track-cell--card .more-tile,
+  .track-cell--card-left .more-tile { width: 130px; }
+  .more-tile h4 { font-size: 0.7rem; margin: 0.5rem 0.6rem 0.15rem; }
+  .more-tile > p { font-size: 0.64rem; margin: 0 0.6rem 0.4rem; }
+  .tp-date { font-size: 0.6rem; padding: 0 0.6rem 0.5rem; }
+}
