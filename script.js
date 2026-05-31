@@ -10,8 +10,6 @@ AOS.init({ duration: 1000, once: true });
   const racetrack = document.getElementById('racetrack');
   if (!racetrack) return;
 
-  const ROAD_W = 180;
-
   const spine = document.createElement('div');
   spine.className = 'road-spine';
   const inner = document.createElement('div');
@@ -22,29 +20,69 @@ AOS.init({ duration: 1000, once: true });
   function sizeSpine() {
     const rows = racetrack.querySelectorAll('.track-row');
     if (!rows.length) return;
+
+    // Use actual rendered spine width (respects responsive CSS)
+    const ROAD_W      = spine.offsetWidth;
     const trackRect   = racetrack.getBoundingClientRect();
     const firstRect   = rows[0].getBoundingClientRect();
     const lastRect    = rows[rows.length - 1].getBoundingClientRect();
-    const spineTop    = firstRect.top    - trackRect.top;
-    const spineH      = lastRect.bottom  - firstRect.top;
+    const spineTop    = firstRect.top   - trackRect.top;
+    const spineH      = lastRect.bottom - firstRect.top;
 
     spine.style.top    = spineTop + 'px';
     spine.style.height = spineH   + 'px';
 
-    // Inner: landscape orientation (spineH wide × ROAD_W tall), rotated 90°
-    // so it renders as portrait (ROAD_W wide × spineH tall)
-    inner.style.width     = spineH   + 'px';
-    inner.style.height    = ROAD_W   + 'px';
-    inner.style.top       = (spineH  / 2 - ROAD_W / 2) + 'px';
-    inner.style.left      = (ROAD_W  / 2 - spineH / 2) + 'px';
-    inner.style.transform = 'rotate(90deg)';
+    // Inner: landscape (spineH wide × ROAD_W tall) rotated 90°
+    // so it renders portrait (ROAD_W wide × spineH tall)
+    inner.style.width         = spineH  + 'px';
+    inner.style.height        = ROAD_W  + 'px';
+    inner.style.top           = (spineH / 2 - ROAD_W / 2) + 'px';
+    inner.style.left          = (ROAD_W / 2 - spineH / 2) + 'px';
+    inner.style.transform     = 'rotate(90deg)';
     inner.style.transformOrigin = 'center center';
   }
 
   window.addEventListener('load',   sizeSpine);
   window.addEventListener('resize', sizeSpine, { passive: true });
   setTimeout(sizeSpine, 50);
-  setTimeout(sizeSpine, 300); // second pass after fonts/images settle
+  setTimeout(sizeSpine, 300);
+})();
+
+/* ============================================================
+   MOBILE HEADER — hide on scroll down, show on scroll up
+============================================================ */
+(function () {
+  const header = document.querySelector('header');
+  if (!header) return;
+  let lastY    = window.scrollY;
+  let ticking  = false;
+
+  function onScroll() {
+    // Only activate on mobile
+    if (window.innerWidth > 640) {
+      header.classList.remove('header--hidden');
+      return;
+    }
+    const currentY = window.scrollY;
+    if (currentY > lastY && currentY > 60) {
+      header.classList.add('header--hidden');
+    } else {
+      header.classList.remove('header--hidden');
+    }
+    lastY = currentY;
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(onScroll);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 640) header.classList.remove('header--hidden');
+  });
 })();
 
 /* ============================================================
