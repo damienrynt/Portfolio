@@ -276,6 +276,13 @@ function openModal(key) {
     ? `<div class="modal-images">${p.images.map(src => `<img src="${src}" alt="">`).join('')}</div>`
     : '';
 
+  const videosHtml = p.videos && p.videos.length
+    ? `<div class="modal-videos">${p.videos.map(src => `
+        <video autoplay loop muted playsinline>
+          <source src="${src}" type="video/mp4">
+        </video>`).join('')}</div>`
+    : '';
+
   const linksHtml = p.links && p.links.length
     ? `<div class="modal-links">${p.links.map(l => `<a href="${l.href}" target="_blank" rel="noopener">${l.label}</a>`).join('')}</div>`
     : '';
@@ -289,6 +296,7 @@ function openModal(key) {
     <div class="modal-date">${p.date}</div>
     ${p.body}
     ${imagesHtml}
+    ${videosHtml}
     ${linksHtml}
     ${skillsHtml}
   `;
@@ -320,3 +328,30 @@ document.querySelectorAll('.more-tile').forEach(tile => {
 closeBtn.addEventListener('click', closeModal);
 backdrop.addEventListener('click', e => { if (e.target === backdrop) closeModal(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+/* ============================================================
+   ARCHIMEDES TILE — use video as cover instead of static image
+============================================================ */
+(function () {
+  const screwTile = document.querySelector('.more-tile[data-project="screw"]');
+  if (!screwTile) return;
+  const wrap = screwTile.querySelector('.more-tile-img-wrap');
+  if (!wrap) return;
+
+  // Replace the <img> with a looping muted video
+  const oldImg = wrap.querySelector('img');
+  const video = document.createElement('video');
+  video.autoplay = true;
+  video.loop = true;
+  video.muted = true;
+  video.playsInline = true;
+  video.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+  const source = document.createElement('source');
+  source.src = 'Images/archimedesvid.mp4';
+  source.type = 'video/mp4';
+  video.appendChild(source);
+  if (oldImg) wrap.replaceChild(video, oldImg);
+  else wrap.insertBefore(video, wrap.firstChild);
+})();
+
+

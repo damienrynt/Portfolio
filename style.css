@@ -548,6 +548,36 @@ nav a:hover::after {
   transform: scale(1.08);
 }
 
+/* Split cover: image left, video right, side by side */
+.more-tile-img-wrap--split {
+  display: flex;
+  flex-direction: row;
+  aspect-ratio: 8 / 3;   /* wider than usual to fit both */
+}
+
+.more-tile-img-wrap--split img {
+  width: 50%;
+  height: 100%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.more-tile-img-wrap--split video {
+  width: 50%;
+  height: 100%;
+  object-fit: cover;
+  flex-shrink: 0;
+  display: block;
+  transition: transform 0.45s ease;
+}
+
+.more-tile:hover .more-tile-img-wrap--split img,
+.more-tile:hover .more-tile-img-wrap--split video,
+.more-tile:focus-visible .more-tile-img-wrap--split img,
+.more-tile:focus-visible .more-tile-img-wrap--split video {
+  transform: scale(1.08);
+}
+
 .more-tile-overlay {
   position: absolute;
   inset: 0;
@@ -729,6 +759,21 @@ nav a:hover::after {
 
 .modal-body .modal-images img.flip-h {
   transform: scaleX(-1);
+}
+
+.modal-body .modal-videos {
+  margin: 1.3rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.modal-body .modal-videos video {
+  width: 100%;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: #060d18;
+  display: block;
 }
 
 .modal-body .modal-skills {
