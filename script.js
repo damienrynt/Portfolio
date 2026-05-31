@@ -91,56 +91,74 @@ AOS.init({ duration: 1000, once: true });
 const gear = document.querySelector('.rotating-gear');
 
 /* ============================================================
-   F1 CAR — scroll-driven position
-   - Starts just below the START label (parked)
-   - Once START scrolls above the viewport center, car follows
-     the viewport center down the track (moves only forward)
-   - Stops just above the FINISH line and parks there
+   F1 CAR — smooth scroll-driven position, bidirectional
 ============================================================ */
 (function () {
-  const car        = document.getElementById('f1car');
-  const racetrack  = document.getElementById('racetrack');
-  const startCap   = document.getElementById('track-start-cap');
-  const finishCap  = document.getElementById('track-finish-cap');
+  const car       = document.getElementById('f1car');
+  const racetrack = document.getElementById('racetrack');
+  const startCap  = document.getElementById('track-start-cap');
+  const finishCap = document.getElementById('track-finish-cap');
   if (!car || !racetrack || !startCap || !finishCap) return;
 
-  const CAR_HALF   = 80;   // half car height (px) — used for centering
-  let maxTop       = null; // furthest position reached (never goes back)
+  const CAR_HALF = 80;
+  let targetTop  = 0;
+  let currentTop = 0;
+  let rafId      = null;
 
-  function updateCar() {
+  // Lerp factor — lower = smoother/slower, higher = snappier
+  // Use slower on mobile for better feel
+  function lerpFactor() {
+    return window.innerWidth <= 640 ? 0.06 : 0.10;
+  }
+
+  function getBounds() {
     const trackRect  = racetrack.getBoundingClientRect();
     const startRect  = startCap.getBoundingClientRect();
     const finishRect = finishCap.getBoundingClientRect();
-
-    // Boundaries in racetrack-relative coords
-    // Park start: bottom edge of start cap
-    const parkStart  = startRect.bottom  - trackRect.top + 20;
-    // Park end: top edge of finish cap minus a little gap
-    const parkFinish = finishRect.top    - trackRect.top - 20 - CAR_HALF * 2;
-
-    // Where the viewport centre is, relative to the racetrack
-    const viewportCenterY = (window.innerHeight / 2) - trackRect.top;
-
-    // Desired top so car centre sits at viewportCenterY
-    const desired = viewportCenterY - CAR_HALF;
-
-    // Clamp between start park and finish park
-    const clamped = Math.min(Math.max(desired, parkStart), parkFinish);
-
-    // Only ever advance forward — never retreat
-    if (maxTop === null || clamped > maxTop) {
-      maxTop = clamped;
-    }
-
-    car.style.top = maxTop + 'px';
+    return {
+      min: startRect.bottom  - trackRect.top + 20,
+      max: finishRect.top    - trackRect.top - 20 - CAR_HALF * 2,
+      trackTop: trackRect.top
+    };
   }
 
-  // Run on scroll and on resize
-  window.addEventListener('scroll', updateCar, { passive: true });
-  window.addEventListener('resize', updateCar, { passive: true });
+  function computeTarget() {
+    const { min, max, trackTop } = getBounds();
+    const viewCenterY = window.innerHeight / 2 - trackTop;
+    const desired     = viewCenterY - CAR_HALF;
+    return Math.min(Math.max(desired, min), max);
+  }
 
-  // Initial placement (parked at start)
-  updateCar();
+  function animate() {
+    const lerp = lerpFactor();
+    currentTop += (targetTop - currentTop) * lerp;
+    car.style.top = currentTop + 'px';
+
+    // Keep animating until close enough
+    if (Math.abs(targetTop - currentTop) > 0.5) {
+      rafId = requestAnimationFrame(animate);
+    } else {
+      car.style.top = targetTop + 'px';
+      rafId = null;
+    }
+  }
+
+  function onScroll() {
+    targetTop = computeTarget();
+    if (!rafId) rafId = requestAnimationFrame(animate);
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', () => {
+    targetTop  = computeTarget();
+    currentTop = targetTop; // snap on resize, no slide
+    car.style.top = currentTop + 'px';
+  }, { passive: true });
+
+  // Initial placement
+  targetTop  = computeTarget();
+  currentTop = targetTop;
+  car.style.top = currentTop + 'px';
 })();
 
 window.addEventListener('scroll', () => {

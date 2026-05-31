@@ -1042,10 +1042,18 @@ footer {
 
 .road-spine-inner {
   position: absolute;
-  background-image: url('Images/road.jpg');
+  background-color: #111;
+  background-image:
+    repeating-linear-gradient(
+      to right,
+      rgba(255,255,255,0.9) 0px,
+      rgba(255,255,255,0.9) 50px,
+      transparent 50px,
+      transparent 85px
+    );
+  background-size: 85px 4px;
   background-repeat: repeat-x;
-  background-size: auto 180px;
-  background-position: left center;
+  background-position: 0 50%;
 }
 
 /* Road cell — spacer only, road drawn by spine */
